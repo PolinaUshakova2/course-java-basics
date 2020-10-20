@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism;
+package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.cat;
 
 public class Person {
     public double happiness;
