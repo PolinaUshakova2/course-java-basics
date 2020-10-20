@@ -12,5 +12,4 @@ public class CatTest {
         Assertions.assertEquals("MEW", cat.mew());
         Assertions.assertEquals("PUURRR", cat.purr());
     }
-
 }
