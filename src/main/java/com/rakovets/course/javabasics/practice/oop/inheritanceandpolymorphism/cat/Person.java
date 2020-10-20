@@ -7,8 +7,8 @@ public class Person {
         this.happiness = happiness;
     }
 
-    public void changeHappiness(double percentHappiness) {
-        this.happiness -= percentHappiness;
+    public double changeHappiness(double percentHappiness) {
+        return this.happiness -= percentHappiness;
     }
 
     public double getHappiness() {

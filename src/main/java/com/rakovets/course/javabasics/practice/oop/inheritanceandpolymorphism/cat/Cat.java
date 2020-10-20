@@ -1,7 +1,7 @@
 package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.cat;
 
 public class Cat {
-    private String name;
+    public String name;
 
     public Cat(String name) {
         this.name = name;
@@ -19,7 +19,7 @@ public class Cat {
         return this.name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
