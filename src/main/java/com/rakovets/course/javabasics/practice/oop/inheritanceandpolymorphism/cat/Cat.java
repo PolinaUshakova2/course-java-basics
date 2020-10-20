@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism;
+package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.cat;
 
 public class Cat {
     private String name;
@@ -21,5 +21,13 @@ public class Cat {
 
     public void setName() {
         this.name = name;
+    }
+
+    public void mew(Person person) {
+        person.changeHappiness(-2);
+    }
+
+    public void purr(Person person) {
+        person.changeHappiness(3);
     }
 }
