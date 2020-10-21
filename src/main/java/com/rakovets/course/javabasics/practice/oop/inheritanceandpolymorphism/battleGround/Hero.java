@@ -1,6 +1,6 @@
 package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.battleGround;
 
-public class Hero {
+public abstract class  Hero {
     public String name;
     public int health;
 
@@ -31,10 +31,7 @@ public class Hero {
         this.health -= damage;
     }
 
-    public void attackEnemy(Enemy enemy) {
-        enemy.takeDamage(5);
-        System.out.println("Hero attacks the enemy");
-    }
+    public abstract void  attackEnemy(Enemy enemy);
 
     public String getName() {
         return this.name;
