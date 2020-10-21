@@ -8,8 +8,8 @@ public class Killer extends Enemy{
         this.isDoubleTheDamage = false;
     }
 
-    public void getDoubleTheDamage(Hero hero, int damege) {
-        hero.takeDamage(damege * 2);
+    public void getDoubleTheDamage(Hero hero, int damage) {
+        hero.takeDamage(damage * 2);
     }
 
     @Override
