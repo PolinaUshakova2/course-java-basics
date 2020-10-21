@@ -7,7 +7,8 @@ public class Hero {
         this.name = name;
     }
 
-    public void attackEnemy() {
+    public void attackEnemy(Enemy enemy) {
+        enemy.takeDamage(5);
         System.out.println("Hero attacks the enemy");
     }
 

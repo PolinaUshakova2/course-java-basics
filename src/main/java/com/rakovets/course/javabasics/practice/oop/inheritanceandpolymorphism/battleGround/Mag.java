@@ -6,7 +6,8 @@ public class Mag extends Hero {
     }
 
     @Override
-    public void attackEnemy() {
+    public void attackEnemy(Enemy enemy) {
+        enemy.takeDamage(3);
         System.out.println("Mag attacks the enemy");
     }
 }

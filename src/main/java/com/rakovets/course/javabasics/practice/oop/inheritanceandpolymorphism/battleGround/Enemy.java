@@ -1,6 +1,6 @@
 package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.battleGround;
 
-public class Enemy {
+public class Enemy implements Mort {
     public int health;
 
     public Enemy(int health) {
@@ -11,8 +11,12 @@ public class Enemy {
         this.health -= damage;
     }
 
-    public void attackEnemy(Enemy enemy) {
-        enemy.takeDamage(5);
+    @Override
+    public boolean isAlive(Enemy enemy) {
+        if (enemy.health > 0) {
+            return true;
+        }
+        return false;
     }
 
     public int getHealth() {
