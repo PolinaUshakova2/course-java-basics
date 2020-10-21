@@ -8,12 +8,17 @@ public class Enemy implements Mort {
     }
 
     public void takeDamage(int damage) {
-        this.health -= damage;
+        health -= damage;
+    }
+
+    public void attackHero(Hero hero) {
+        hero.takeDamage(5);
+        System.out.println("Enemy attacks the hero");
     }
 
     @Override
     public boolean isAlive(Enemy enemy) {
-        if (enemy.health > 0) {
+        if (health > 0) {
             return true;
         }
         return false;
