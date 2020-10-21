@@ -15,6 +15,6 @@ public class PersonTest {
     @Test
     void personTest() {
         Assertions.assertEquals(40, person.getHappiness());
-        Assertions.assertEquals(37,person.changeHappiness(3));
+        Assertions.assertEquals(43,person.changeHappiness(3));
     }
 }
