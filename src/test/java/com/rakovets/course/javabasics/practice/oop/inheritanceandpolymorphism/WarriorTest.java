@@ -1,21 +1,20 @@
 package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism;
+import com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.battleGround.Warrior;
 import com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.cat.Sphynx;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class SphynxTest {
-    private static Sphynx sphynx;
+public class WarriorTest {
+    private static Warrior warrior;
 
     @BeforeAll
     static void init() {
-        sphynx = new Sphynx("Kay");
+        warrior = new Warrior("Bob");
     }
 
     @Test
-    void sphynxTest() {
-        Assertions.assertEquals("Kay", sphynx.getName());
-        Assertions.assertEquals("AWWA", sphynx.mew());
-        Assertions.assertEquals("HOHOHO", sphynx.purr());
+    void warriorTest() {
+        Assertions.assertEquals("Bob", warrior.getName());
     }
 }
