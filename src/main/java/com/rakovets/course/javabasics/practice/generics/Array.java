@@ -3,22 +3,19 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Scanner;
-import com.rakovets.course.javabasics.practice.generics.Math;
 
 
 public class Array<T> {
-     private Object[] array;
+     private Number[] array;
      private int count;
 
      public Array(int count) {
          this.count = count;
-         array = new Object[count];
+         array = new Number[count];
      }
 
      public void getKeyboardInput() {
          Scanner in = new Scanner(System.in);
-         System.out.print("Count: ");
-         setCount(in.nextInt());
          for (int i = 0; i < count; i++) {
              array[i] = in.nextInt();
          }
@@ -26,14 +23,12 @@ public class Array<T> {
 
      public void getRandomInput() {
          Scanner in = new Scanner(System.in);
-         System.out.print("Count: ");
-         setCount(in.nextInt());
          for (int i = 0; i < count; i++) {
              array[i] = java.lang.Math.random();
          }
      }
 
-     public void printArray(T[] array) {
+     public void printArray() {
          for (Object variable : array){
              System.out.print(variable + " ");
          }
