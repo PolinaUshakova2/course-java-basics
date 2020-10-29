@@ -1,6 +1,6 @@
 package com.rakovets.course.javabasics.practice.exceptionhandling;
 
-public class ExceptionHandling {
+public class NullPointer {
     public static void main(String[] args) {
         String string = null;
         try{
