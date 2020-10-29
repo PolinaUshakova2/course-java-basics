@@ -7,14 +7,13 @@ public class MyException {
             System.out.print(result);
         }
         catch (Exception e) {
-            System.out.print(e.getStackTrace());
-            System.out.print(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public static double getRootOfNumber(int num) throws Exception {
+    public static double getRootOfNumber(int num) throws SqrtException {
         if (num < 0) {
-            throw new Exception("\nThe number is less than 1");
+            throw new SqrtException("\nThe number is less than 1", num);
         }
           return Math.sqrt(num);
     }
