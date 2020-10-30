@@ -1,4 +1,5 @@
 package com.rakovets.course.javabasics.practice.jcf;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -9,10 +10,15 @@ public class Studio {
         this.actors = actors;
     }
 
-    public class ActorFeeComparator implements Comparator<Actor> {
+    public void fire(ArrayList actors) {
+        actors.sort(new ActorFeeComparator());
+        actors.remove(0);
+    }
+
+    public static class ActorFeeComparator implements Comparator<Actor> {
         @Override
         public int compare(Actor o1, Actor o2) {
-            return (int)(o1.getFee() - o2.getFee());
+            return (int)(o2.getFee() - o1.getFee());
         }
     }
 
@@ -23,10 +29,10 @@ public class Studio {
         }
     }
 
-    public class ActorAgeComparator implements Comparator<Actor> {
+    public static class ActorAgeComparator implements Comparator<Actor> {
         @Override
         public int compare(Actor o1, Actor o2) {
-            return  (int)(o1.getAge() - o2.getAge());
+            return  (int)(o2.getAge() - o1.getAge());
         }
     }
 
@@ -48,4 +54,19 @@ public class Studio {
         }
     }
 
+    public String getAges() {
+        String result = "";
+        for (Actor actor : actors) {
+            result += actor.getAge() + " ";
+        }
+        return result.trim();
+    }
+
+    public String getFees() {
+        String result = "";
+        for (Actor actor : actors) {
+            result += actor.getFee() + " ";
+        }
+        return result.trim();
+    }
 }
