@@ -69,4 +69,8 @@ public class Studio {
         }
         return result.trim();
     }
+
+    public void setActors(ArrayList<Actor> actors) {
+        this.actors = actors;
+    }
 }
