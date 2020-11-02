@@ -22,10 +22,6 @@ public abstract class Car {
                 "\nRegistrationNumber: " + registrationNumber;
     }
 
-    @Override
-    public boolean equals(Car car) {
-        return car.getBrand().equals(brand);
-    }
 
     @Override
     public int hashCode() {
