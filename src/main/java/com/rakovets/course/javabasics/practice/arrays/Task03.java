@@ -2,6 +2,9 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Разработать программу для электронного дневника:
  * которая работает с отметками по каждому предмету.
@@ -32,7 +35,22 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        double sum = 0;
+        int rows = marks.length;
+        int colums = marks[0].length;
+        double averageMark = 0;
+        double[] averageMarksArray = new double [rows];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < colums; j++) {
+                sum += marks[i][j];
+            }
+            averageMark = sum / colums;
+            sum = 0;
+            BigDecimal bd = new BigDecimal(Double.toString(averageMark));
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            averageMarksArray[i] = bd.doubleValue();
+        }
+        return averageMarksArray;
     }
 
     /**
@@ -45,7 +63,19 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        int rows = marks.length;
+        int colums = marks[0].length;
+        int[] minMarksArray = new int [rows];
+        for (int i = 0; i < rows; i++) {
+            int minMark = marks[i][0];
+            for (int j = 0; j < colums; j++) {
+                if (minMark > marks[i][j]) {
+                    minMark = marks [i][j];
+                }
+                minMarksArray[i] = minMark;
+            }
+        }
+        return minMarksArray;
     }
 
     /**
@@ -58,7 +88,19 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        int rows = marks.length;
+        int colums = marks[0].length;
+        int[] maxMarksArray = new int [rows];
+        for (int i = 0; i < rows; i++) {
+            int maxMark = marks[i][0];
+            for (int j = 0; j < colums; j++) {
+                if (maxMark < marks[i][j]) {
+                    maxMark = marks [i][j];
+                }
+                maxMarksArray[i] = maxMark;
+            }
+        }
+        return maxMarksArray;
     }
 
     private static int[][] nextArray(int countDisciplines, int countSemesters) {

@@ -2,6 +2,9 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Разработать программу для электронного дневника:
  * которая работает с отметками только по одному предмету
@@ -31,7 +34,14 @@ public class Task01 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0.0;
+        double sum = 0;
+        for (int i = 0; i < marks.length; i++) {
+            sum += marks[i];
+        }
+        double average = sum / marks.length;
+        BigDecimal bd = new BigDecimal(Double.toString(average));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     /**
@@ -44,7 +54,13 @@ public class Task01 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0;
+        int minMark = marks[0];
+        for (int i = 0; i < marks.length; i++) {
+            if (minMark > marks [i]) {
+                minMark = marks [i];
+            }
+        }
+        return minMark;
     }
 
     /**
@@ -57,7 +73,13 @@ public class Task01 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0;
+        int maxMark = marks[0];
+        for (int i = 0; i < marks.length; i++) {
+            if (maxMark < marks [i]) {
+                maxMark = marks [i];
+            }
+        }
+        return maxMark;
     }
 
     private static int[] nextArray(int countMarks) {
