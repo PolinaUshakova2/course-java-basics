@@ -32,6 +32,19 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        float color = (currentHealthPoint * 100F) / maxHealthPoint;
+        String result;
+        if (color < 25 && color > 0 ) {
+            result = "RED";
+        } else if (color < 50 && color >= 25) {
+            result = "ORANGE";
+        } else if (color < 75 && color >= 50) {
+            result = "YELLOW";
+        } else if (color <= 100 && color >= 75) {
+            result = "GREEN";
+        } else {
+            result = null;
+        }
+        return result;
     }
 }
