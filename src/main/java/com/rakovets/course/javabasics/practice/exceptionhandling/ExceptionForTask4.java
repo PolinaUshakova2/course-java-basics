@@ -6,8 +6,7 @@ public class ExceptionForTask4 {
             int firstNumber = 4;
             int secondNumber = 0;
             divisionOfTwoNumbers(firstNumber, secondNumber);
-        }
-        catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
             System.out.print(e.getMessage());
         }

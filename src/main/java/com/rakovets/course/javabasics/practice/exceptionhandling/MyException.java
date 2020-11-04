@@ -5,8 +5,7 @@ public class MyException {
         try {
             double result = getRootOfNumber(-4);
             System.out.print(result);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

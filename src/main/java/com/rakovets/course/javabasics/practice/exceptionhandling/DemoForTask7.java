@@ -4,8 +4,7 @@ public class DemoForTask7 {
     public static void main(String[] args) {
         try {
             MethodForTask7.Devision();
-        }
-        catch (ArithmeticException e) {
+        } catch (ArithmeticException e) {
             System.out.print("\nWrong devision");
         }
         finally {
