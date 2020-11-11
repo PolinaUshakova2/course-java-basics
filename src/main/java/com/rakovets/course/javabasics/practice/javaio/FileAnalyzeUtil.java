@@ -2,7 +2,7 @@ package com.rakovets.course.javabasics.practice.javaio;
 import java.io.*;
 import java.util.*;
 
-public class FileAnalyzeUtil{
+public class FileAnalyzeUtil {
     public static List<String> getListOfFile(String filePath) {
         List<String> listOfStrings = new ArrayList<>();
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
@@ -124,8 +124,8 @@ public class FileAnalyzeUtil{
         List<Integer> listOfNumbers = new ArrayList<>();
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath));
              BufferedWriter bw = new BufferedWriter(new FileWriter(filePathNew))) {
-            String str;
-            while ((str = buffer.readLine()) != null) {
+             String str;
+             while ((str = buffer.readLine()) != null) {
                 numbers = str.split(" ");
                 for (String num : numbers) {
                     listOfNumbers.add(Integer.parseInt(num));
@@ -152,6 +152,36 @@ public class FileAnalyzeUtil{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Map<String, Double> getAcademicPerformance(String filePath) {
+        Map<String, Double> mapOfStudents = new HashMap<>();
+        String[] intermediateArray;
+        String surname;
+        String stringOfMark;
+        double sum = 0;
+        double averageMark;
+        List<String> listOfStrings = new ArrayList<>();
+        try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
+            String str;
+            while ((str = buffer.readLine()) != null) {
+                surname = str.substring(0, str.indexOf(','));
+                stringOfMark = str.substring(str.indexOf(',') + 1);
+                intermediateArray = stringOfMark.split(",");
+                Integer[] marks = new Integer[intermediateArray.length];
+                for (int i = 0; i < intermediateArray.length; i++) {
+                    marks[i] = Integer.parseInt(intermediateArray[i]);
+                }
+                for (Integer mark : marks) {
+                    sum += mark;
+                }
+                averageMark = sum / (marks.length);
+                mapOfStudents.put(surname, averageMark);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mapOfStudents;
     }
 }
 
