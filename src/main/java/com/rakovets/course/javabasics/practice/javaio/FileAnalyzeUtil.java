@@ -1,14 +1,8 @@
 package com.rakovets.course.javabasics.practice.javaio;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
-public class FileAnalyzeUtil {
+public class FileAnalyzeUtil{
     public static List<String> getListOfFile(String filePath) {
         List<String> listOfStrings = new ArrayList<>();
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
@@ -71,7 +65,7 @@ public class FileAnalyzeUtil {
 
     public static Map<Character, Integer> getLetterRepetitionRate(String filePath) {
         Map<Character, Integer> mapOfChar = new HashMap<>();
-        Character symbol = null;
+        Character symbol;
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
             int c;
             while ((c = buffer.read()) != -1) {
@@ -91,7 +85,74 @@ public class FileAnalyzeUtil {
         return mapOfChar;
     }
 
+    public static Map<Character, Integer> getLetterRepetitionRateAndSortedByValue(String filePath) {
+        Map<Character, Integer> mapOfChar = new HashMap<>();
+        Map<Character, Integer> sortedMapOfChar = new LinkedHashMap<>();
+        Character symbol;
+        try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
+            int c;
+            while ((c = buffer.read()) != -1) {
+                symbol = (char) c;
+                symbol = java.lang.Character.toLowerCase(symbol);
+                if (mapOfChar.containsKey(symbol)) {
+                    int value = mapOfChar.get(symbol);
+                    value++;
+                    mapOfChar.put(symbol, value);
+                } else {
+                    mapOfChar.put(symbol, 1);
+                }
+            }
+            List<Map.Entry<Character, Integer>> list = new LinkedList<>(mapOfChar.entrySet());
+            Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
+                @Override
+                public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                    return o1.getValue().compareTo(o2.getValue());
+                }
+            });
+            for (Map.Entry<Character, Integer> item : list) {
+                sortedMapOfChar.put(item.getKey(), item.getValue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sortedMapOfChar;
+    }
 
+    public static void getSortOfNumbers(String filePath) {
+        String[] numbers;
+        String filePathNew = filePath.replace(".txt", "_.txt");
+        List<Integer> listOfNumbers = new ArrayList<>();
+        try (BufferedReader buffer = new BufferedReader(new FileReader(filePath));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(filePathNew))) {
+            String str;
+            while ((str = buffer.readLine()) != null) {
+                numbers = str.split(" ");
+                for (String num : numbers) {
+                    listOfNumbers.add(Integer.parseInt(num));
+                }
+                listOfNumbers.sort(new Comparator<Integer>() {
+                    @Override
+                    public int compare(Integer o1, Integer o2) {
+                        return o1 - o2;
+                    }
+                });
+                File file = new File(filePathNew);
+                try {
+                    boolean create = file.createNewFile();
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                for (int item : listOfNumbers) {
+                    bw.write(item + " ");
+                    bw.flush();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
