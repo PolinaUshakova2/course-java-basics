@@ -3,8 +3,9 @@ package com.rakovets.course.javabasics.practice.concurrency;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MasterWorker {
-    public static void main(String[] args) {
+public class MasterWorker implements Runnable{
+    @Override
+    public void run() {
         try {
             Scanner scanner = new Scanner(System.in);
             int timeToSleepInSedonds;
