@@ -18,11 +18,11 @@ public class FileAnalyzeUtil {
 
     public static List<String> getListOfWordsStartWithVowel(String filePath) {
         List<String> listOfWordsStartWithVowel = new ArrayList<>();
-        String words = null;
+        String words = "";
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
             int c;
             while ((c = buffer.read()) != -1) {
-                words += c;
+                words += (char) c;
             }
             if (words != null) {
                 for (String word : words.split("\\W")) {
@@ -39,19 +39,22 @@ public class FileAnalyzeUtil {
 
     public static List<String> getListOfWordsWithTheSameBeginningAndEnd(String filePath) {
         List<String> listOfWordsWithTheSameBeginningAndEnd = new ArrayList<>();
-        String words = null;
+        String words = "";
         String[] word;
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
             int c;
             while ((c = buffer.read()) != -1) {
-                words += c;
+                words += (char) c;
+            }
+            while(words.contains("  ")) {
+                String replace = words.replace("  ", " ");
+                words = replace;
             }
             word = words.split("\\W");
             for (int i = 0; i < word.length - 1; i++) {
                 if (word[i] != null && word[i + 1] != null) {
                     if (word[i].charAt(word[i].length() - 1) == word[i + 1].charAt(0)) {
                         listOfWordsWithTheSameBeginningAndEnd.add(word[i]);
-                        listOfWordsWithTheSameBeginningAndEnd.add(word[i + 1]);
                     }
                 }
             }
@@ -71,6 +74,9 @@ public class FileAnalyzeUtil {
             while ((c = buffer.read()) != -1) {
                 symbol = (char) c;
                 symbol = Character.toLowerCase(symbol);
+                if (symbol == ' ') {
+                    continue;
+                }
                 if (mapOfChar.containsKey(symbol)) {
                     int value = mapOfChar.get(symbol);
                     value++;
@@ -85,48 +91,54 @@ public class FileAnalyzeUtil {
         return mapOfChar;
     }
 
-    public static Map<Character, Integer> getLetterRepetitionRateAndSortedByValue(String filePath) {
-        Map<Character, Integer> mapOfChar = new HashMap<>();
-        Map<Character, Integer> sortedMapOfChar = new LinkedHashMap<>();
-        Character symbol;
+    public static Map<String, Integer> getWordRepetitionRateAndSortedByValue(String filePath) {
+        Map<String, Integer> mapOfWords = new HashMap<>();
+        Map<String, Integer> sortedMapOfWords = new LinkedHashMap<>();
+        String words = "";
+        String[] word;
         try (BufferedReader buffer = new BufferedReader(new FileReader(filePath))) {
             int c;
             while ((c = buffer.read()) != -1) {
-                symbol = (char) c;
-                symbol = java.lang.Character.toLowerCase(symbol);
-                if (mapOfChar.containsKey(symbol)) {
-                    int value = mapOfChar.get(symbol);
-                    value++;
-                    mapOfChar.put(symbol, value);
+                words += (char) c;
+            }
+            while(words.contains("  ")) {
+                String replace = words.replace("  ", " ");
+                words = replace;
+            }
+            word = words.split("\\W");
+            for (String item : word) {
+                if (mapOfWords.containsKey(item)) {
+                    int value = mapOfWords.get(item);
+                    mapOfWords.put(item, ++value);
                 } else {
-                    mapOfChar.put(symbol, 1);
+                    mapOfWords.put(item, 1);
                 }
             }
-            List<Map.Entry<Character, Integer>> list = new LinkedList<>(mapOfChar.entrySet());
-            Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
+            List<Map.Entry<String, Integer>> list = new LinkedList<>(mapOfWords.entrySet());
+            Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
                 @Override
-                public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                     return o1.getValue().compareTo(o2.getValue());
                 }
             });
-            for (Map.Entry<Character, Integer> item : list) {
-                sortedMapOfChar.put(item.getKey(), item.getValue());
+            for (Map.Entry<String, Integer> item : list) {
+                sortedMapOfWords.put(item.getKey(), item.getValue());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return sortedMapOfChar;
+        return sortedMapOfWords;
     }
 
-    public static void getSortOfNumbers(String filePath) {
+    public static List<Integer> getSortOfNumbers(String filePath) {
         String[] numbers;
-        String filePathNew = filePath.replace(".txt", "_.txt");
+        String newFilePath = filePath.replace(filePath, filePath + "_");
         List<Integer> listOfNumbers = new ArrayList<>();
-        try (BufferedReader buffer = new BufferedReader(new FileReader(filePath));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(filePathNew))) {
+        try (BufferedReader bf = new BufferedReader(new FileReader(filePath));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(newFilePath)))  {
              String str;
-             while ((str = buffer.readLine()) != null) {
-                numbers = str.split(" ");
+             while ((str = bf.readLine()) != null) {
+                numbers = str.split("\\W");
                 for (String num : numbers) {
                     listOfNumbers.add(Integer.parseInt(num));
                 }
@@ -136,7 +148,7 @@ public class FileAnalyzeUtil {
                         return o1 - o2;
                     }
                 });
-                File file = new File(filePathNew);
+                File file = new File(newFilePath);
                 try {
                     boolean create = file.createNewFile();
                 } catch (IOException e) {
@@ -152,6 +164,7 @@ public class FileAnalyzeUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return listOfNumbers;
     }
 
     public static Map<String, Double> getAcademicPerformance(String filePath) {
@@ -172,6 +185,7 @@ public class FileAnalyzeUtil {
                 for (int i = 0; i < intermediateArray.length; i++) {
                     marks[i] = Integer.parseInt(intermediateArray[i]);
                 }
+                sum = 0;
                 for (Integer mark : marks) {
                     sum += mark;
                 }
