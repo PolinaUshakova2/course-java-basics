@@ -7,21 +7,25 @@ public class MasterWorker implements Runnable{
     @Override
     public void run() {
         try {
+            boolean isRun = true;
             Scanner scanner = new Scanner(System.in);
-            int timeToSleepInSedonds;
-            while (true) {
-                timeToSleepInSedonds = scanner.nextInt();
-                if (timeToSleepInSedonds == -1) {
-                    return;
+            int timeToSleepInSeconds;
+            while (isRun) {
+                timeToSleepInSeconds = scanner.nextInt();
+                if (timeToSleepInSeconds == -1) {
+                    isRun = false;
                 }
                 try {
-                    Thread.sleep(timeToSleepInSedonds * 1000);
-                    System.out.println("I slept " + timeToSleepInSedonds + " seconds");
+                    Thread.sleep(timeToSleepInSeconds * 1000);
+                    System.out.println("I slept " + timeToSleepInSeconds + " seconds");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println("Next:");
             }
-        } catch (InputMismatchException e) {
+            System.out.println("...");
+            Thread.sleep(1 * 1000);
+        } catch (InputMismatchException | InterruptedException e) {
             e.printStackTrace();
         }
     }
