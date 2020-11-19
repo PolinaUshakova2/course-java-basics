@@ -19,7 +19,7 @@ public class SchoolClassTest {
         students.sort(new SchoolClass.StudentAgeComparator());
         assertEquals("21 20 19 15", schoolClass.getAges());
         students.sort(new SchoolClass.StudentAverageAnnualMarkComparator());
-        assertEquals("9.0 7.0 5.53 3.0", schoolClass.getAverageMark());
+        assertEquals("9.0 7.0 5.53 3.0", schoolClass.getAverageMarks());
         assertEquals("Nicholson",schoolClass.getBestStudent(students).getSurname());
     }
 }

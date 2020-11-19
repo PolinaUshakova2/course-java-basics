@@ -32,7 +32,7 @@ public class Studio {
     public static class ActorAgeComparator implements Comparator<Actor> {
         @Override
         public int compare(Actor o1, Actor o2) {
-            return  (int)(o2.getAge() - o1.getAge());
+            return  (o2.getAge() - o1.getAge());
         }
     }
 
