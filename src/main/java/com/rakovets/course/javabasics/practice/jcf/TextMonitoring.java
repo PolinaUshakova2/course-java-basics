@@ -3,29 +3,29 @@ package com.rakovets.course.javabasics.practice.jcf;
 import java.util.HashMap;
 
 public class TextMonitoring {
-    public static void researchText(String text) {
-        HashMap<String, Integer> map= new HashMap<>();
-        String[] stringArray = text.split(" ");
-        for (String word : stringArray) {
-            if (map.containsKey(word)) {
-                int value = map.get(word);
-                value++;
-                map.put(word, value);
+    public static HashMap<String, Integer> researchText(String text) {
+        HashMap<String, Integer> mapOfWords = new HashMap<>();
+        String[] words = text.split(" ");
+        for (String word : words) {
+            if (mapOfWords.containsKey(word)) {
+                int key = mapOfWords.get(word);
+                mapOfWords.put(word, ++key);
             } else {
-                map.put(word, 1);
+                mapOfWords.put(word, 1);
             }
         }
+        return mapOfWords;
     }
 
-    public static int getCountUniqueWords(HashMap<String, Integer> map) {
-        return map.size();
+    public int getCountUniqueWords(HashMap<String, Integer> mapOfWords) {
+        return mapOfWords.size();
     }
 
-    public static java.util.Set<String> getUniqueWords(HashMap<String, Integer> map) {
-        return map.keySet();
+    public java.util.Set<String> getUniqueWords(HashMap<String, Integer> mapOfWords) {
+        return mapOfWords.keySet();
     }
 
-    public static int get(HashMap<String, Integer> map, String word) {
+    public int get(HashMap<String, Integer> map, String word) {
         return map.get(word);
     }
 }
