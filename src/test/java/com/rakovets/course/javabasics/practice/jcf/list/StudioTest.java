@@ -18,8 +18,8 @@ public class StudioTest {
         actors.add(new Actor("Julie", "Andrews", 60, 757));
         Studio studio = new Studio(actors);
         actors.sort(new Studio.ActorAgeComparator());
-        assertEquals("67 60 56 50 20",studio.getAges());
+        assertEquals("858 757 468 299 200",studio.getAges());
         studio.fire(actors);
-        assertEquals("757 468 299 200",studio.getFees());
+        assertEquals("60 56 50 20",studio.getFees());
     }
 }
