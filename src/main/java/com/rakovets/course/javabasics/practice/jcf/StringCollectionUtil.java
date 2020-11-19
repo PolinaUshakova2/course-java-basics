@@ -1,23 +1,30 @@
 package com.rakovets.course.javabasics.practice.jcf;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class StringCollectionUtil {
-    public static ArrayList<String> resetWordsByLength(ArrayList<String> strings, int sizeOfWord) {
-        for (int i = 0; i < strings.size(); i++) {
-            if (strings.get(i).length() == sizeOfWord) {
-                strings.set(i, "*");
+    public static Collection<String> resetWordsByLength(Collection<String> strings, int sizeOfWord) {
+        Collection<String> resultCollection = new LinkedList<>();
+        for (String string : strings) {
+            if (string.length() != sizeOfWord) {
+                resultCollection.add(string);
+            } else {
+                resultCollection.add("*");
             }
         }
-        return strings;
+        return resultCollection;
     }
 
-    public static ArrayList<String> removeWordsByLength(ArrayList<String> strings, int sizeOfWord) {
-        for (int i = 0; i < strings.size(); i++) {
-            if (strings.get(i).length() == sizeOfWord) {
-                strings.remove(i);
+    public static Collection<String> removeWordsByLength(Collection<String> strings, int sizeOfWord) {
+        Collection<String> resultCollection = new LinkedList<>();
+        for (String string : strings) {
+            if (string.length() != sizeOfWord) {
+                resultCollection.add(string);
             }
         }
-        return strings;
+        return resultCollection;
     }
+
 }
