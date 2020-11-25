@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.concurrency.threadsynchronization;
+package com.rakovets.course.javabasics.practice.concurrency.threadsynchronization.store;
 
 public class ProducerThread implements Runnable{
     private Store store;

@@ -1,36 +1,35 @@
-package com.rakovets.course.javabasics.practice.concurrency.threadsynchronization;
+package com.rakovets.course.javabasics.practice.concurrency.threadsynchronization.store;
 
 import java.util.LinkedList;
 import java.util.Random;
 
 public class Store {
-    private LinkedList<Integer> list = new LinkedList<>();
+    private LinkedList<Integer> listOfInteger = new LinkedList<>();
 
     public synchronized void produce() {
-        if (list.size() == 10) {
+        if (listOfInteger.size() == 10) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        list.add(new Random().nextInt(50));
+        listOfInteger.add(new Random().nextInt(50));
         System.out.print("Add number\n");
         notify();
     }
 
     public synchronized void consume() {
-        if (list.size() == 0) {
+        if (listOfInteger.size() == 0) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.print(list.getFirst());
-        list.removeFirst();
+        System.out.print(listOfInteger.getFirst());
+        listOfInteger.removeFirst();
         System.out.print("Remove number\n");
         notify();
-
     }
 }

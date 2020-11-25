@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.concurrency.threadsynchronization;
+package com.rakovets.course.javabasics.practice.concurrency.threadsynchronization.store;
 
 import java.util.Random;
 
